@@ -1,0 +1,3 @@
+[submodule "pyserdisp"]
+	path = pyserdisp
+	url = git@github.com:tanuva/pyserdisp
