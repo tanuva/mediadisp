@@ -1,3 +1,6 @@
-[submodule "pyserdisp"]
-	path = pyserdisp
+[submodule "resources/pyserdisp"]
+	path = resources/pyserdisp
 	url = git@github.com:tanuva/pyserdisp
+[submodule "resources/freetype-py"]
+	path = resources/freetype-py
+	url = https://github.com/rougier/freetype-py/

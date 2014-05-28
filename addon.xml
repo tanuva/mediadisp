@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.tanuva.xbmcdisp" name="XBMCdisp" version="0.1" provider-name="Marcel 'tanuva' Brueggebors">
+  <requires>
+    <import addon="xbmc.python" version="2.14.0"/>
+    <import addon="xbmc.addon" version="12.0.0"/>
+    <import addon="xbmc.gui" version="5.0.1"/>
+  </requires>
+  <extension point="xbmc.service" library="xbmcdisp.py" start="login"></extension>
+  <extension point="xbmc.addon.metadata">
+    <language></language>
+    <summary>XBMCdisp</summary>
+    <description>Displays status information on displays supported by serdisplib. Dependencies: freetype 2</description>
+    <description lang="de"></description>
+    <disclaimer>XBMCdisp uses serdisplib as backend. No liability taken for damaged hardware and/or software caused by this addon.</disclaimer>
+    <disclaimer lang="de">XBMCdisp nutzt serdisplib zur Ansteuerung. Keine Haftung für durch dieses Addon beschädigte Hard-/Software.</disclaimer>
+    <license>GNU General Public License, Version 3</license>
+    <platform>all</platform>
+  </extension>
+</addon>
