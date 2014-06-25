@@ -31,30 +31,32 @@ if cmd_subfolder not in sys.path:
 # =====================
 
 from time import sleep # Sounds quite relaxed.
-import xbmc
-import xbmcaddon
 from graphdisp import GraphDisp
 from lcdmode import LcdMode
 
-__settings__   = xbmcaddon.Addon(id='script.tanuva.xbmcdisp')
+#__settings__   = xbmcaddon.Addon(id='script.tanuva.xbmcdisp')
 #__cwd__        = __settings__.getAddonInfo('path')
 
 # Needed for notifications
-__icon__       = os.path.join(__settings__.getAddonInfo("path"), "icon.png")
-__scriptname__ = "XBMCdisp"
+#__icon__       = os.path.join(__settings__.getAddonInfo("path"), "icon.png")
+#__scriptname__ = "XBMCdisp"
 
 class XbmcDisp:
 	def __init__(self, device, model, options = ""):
-		if not xbmc.abortRequested:
-			self.disp = GraphDisp(device, model, options)
-			self.disp.showText([0, 0], "Hello!")
-			self.disp.update()
+		self.device = device
+		self.model = model
+		self.options = options
 
 	def __enter__(self):
-		self.disp.__enter__()
+		if True:# not xbmc.abortRequested:
+			self.graphdisp = GraphDisp(self.device, self.model, self.options)
+			self.graphdisp.__enter__()
+			self.graphdisp.drawText([0, 0], "Hello!", self.graphdisp.serdisp.BLACK, "center", "center")
+			self.graphdisp.serdisp.update()
+			return self
 
 	def __exit__(self, type, value, traceback):
-		self.disp.__exit__(type, value, traceback)
+		self.graphdisp.__exit__(type, value, traceback)
 
 	def __showDisplayConnectResult(self):
 		print "showDisplayConnectResult"
@@ -91,33 +93,38 @@ class XbmcDisp:
 	'''
 
 	def update(self):
-		print "update"
-		self.disp.update()
+		#self.graphdisp.clear()
+
+		from datetime import datetime
+		curTime = datetime.now()
+		self.graphdisp.drawText([0,0],
+			"{:%H:%M:%S}".format(curTime),
+			self.graphdisp.serdisp.BLACK,
+			"center", "top")
+		self.graphdisp.drawText([0, 0], "Let the sun shine!", self.graphdisp.serdisp.BLACK, "center", "center")
+		self.graphdisp.drawProgressBar([0, 60], [128, 4], curTime.second / 60.0)
+		#import timeit
+		#print timeit.timeit(self.graphdisp.flip, "gc.enable()", number=1)
+		self.graphdisp.flip()
+		#player = xbmc.Player()
+		#if player.isPlayingVideo():
+		#	print "turning off backlight (NYI)"
+		#if player.isPlayingAudio():
+			# check for playing/paused state
+			# show state icon
+		#	tag = player.getMusicInfoTag()
+		#	self.graphdisp.drawText([0,0], tag.getArtist(), "left", "top")
+		#	self.graphdisp.drawText([0,0], tag.getTitle(), "right", "center")
+		#	self.graphdisp.drawText([0,0], tag.getAlbum(), "left", "bottom")
+		#else:
+		#	self.graphdisp.clear()
 
 if __name__ == "__main__":
 	# Surround this with try/catch and notify user
-	#with XbmcDisp("USB:7c0/1501", "CTINCLUD") as disp:
-	#	# Enter our main loop
-	#	while not xbmc.abortRequested:
-	#		disp.update()
-	#		sleep(1) # seconds
-
-	lastOut = ""
-
-	while not xbmc.abortRequested:
-		player = xbmc.Player()
-		output = "XBMCdisp "
-		if player.isPlayingVideo():
-			output += "Video: "
-			print "turning off backlight"
-		elif player.isPlayingAudio():
-			# check for playing/paused state
-			# show state icon
-			output += "Audio: "
-			tag = player.getMusicInfoTag()
-			output += tag.getArtist() + " - " + tag.getTitle() + " (" + tag.getAlbum() + ")"
-		if player.isPlaying() and not lastOut == output:
-			print output
-			lastOut = output
-
-		sleep(1)
+	#try:
+		with XbmcDisp("USB:7c0/1501", "CTINCLUD") as disp:
+			while True:#not xbmc.abortRequested:
+				disp.update()
+				sleep(.5)
+	#except Exception, e:
+	#	print e
