@@ -1,0 +1,644 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"isPlay",
+				"isPlayingVideo"
+			],
+			[
+				"set",
+				"setupNewFrame"
+			],
+			[
+				"max",
+				"MaxRetrievable"
+			],
+			[
+				"Authentica",
+				"AuthenticatedEncryptionFilter"
+			],
+			[
+				"uns",
+				"unsignedChar"
+			],
+			[
+				"res",
+				"resultB"
+			],
+			[
+				"result",
+				"resultHelper"
+			],
+			[
+				"intersectAl",
+				"intersectAllHelper"
+			],
+			[
+				"insertSo",
+				"insertSortHelper"
+			],
+			[
+				"isP",
+				"isPrimeHelper"
+			],
+			[
+				"po",
+				"powrAkk"
+			],
+			[
+				"spec",
+				"specularExponent"
+			],
+			[
+				"light",
+				"lightSpecular"
+			],
+			[
+				"spe",
+				"specularExponent"
+			],
+			[
+				"gl",
+				"gl_Vertex"
+			],
+			[
+				"mod",
+				"modelViewMatrix"
+			],
+			[
+				"vert",
+				"vertexSpecularExponent"
+			],
+			[
+				"vertex",
+				"vertexColor"
+			],
+			[
+				"normal",
+				"normalMatrix"
+			],
+			[
+				"norm",
+				"normalMatrix"
+			],
+			[
+				"moonA",
+				"moonAngle"
+			],
+			[
+				"glP",
+				"glPopMatrix"
+			],
+			[
+				"moon",
+				"moonAngle"
+			],
+			[
+				"earth",
+				"earthRotationAngle"
+			],
+			[
+				"ear",
+				"earthRotationAxisAngle"
+			],
+			[
+				"lat",
+				"latitudeEntries"
+			],
+			[
+				"log",
+				"longitudeEntries"
+			],
+			[
+				"longt",
+				"longitudeEntries"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "resources/pyserdisp/graphdisp.py",
+			"settings":
+			{
+				"buffer_size": 3786,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/pyserdisp/pyserdisp.py",
+			"settings":
+			{
+				"buffer_size": 5746,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "xbmcdisp.py",
+			"settings":
+			{
+				"buffer_size": 4096,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/User/Latex.sublime-build",
+	"command_palette":
+	{
+		"height": 181.0,
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/marcel/code/xbmcdisp/resources/pyserdisp/graphdisp.py",
+		"/Users/marcel/kit/ba/notizen.md",
+		"/Users/marcel/code/xbmcdisp/resources/xbmcprovider.py",
+		"/Users/marcel/code/xbmcdisp/xbmcdisp.py",
+		"/Users/marcel/code/filetrain/log.txt",
+		"/Users/marcel/code/filetrain/client/desktop/FileTrainClient/wizardsetpasswordpage.ui",
+		"/Users/marcel/code/filetrain/client/desktop/FileTrainClient/wizardshareconfigpage.ui",
+		"/Users/marcel/code/filetrain/client/desktop/FileTrainClient/wizarddonepage.ui",
+		"/Users/marcel/code/filetrain/client/desktop/FileTrainClient/wizardcredentialspage.ui",
+		"/Users/marcel/kit/ba/BA_MarcelBrueggebors.md",
+		"/Users/marcel/kit/ba/KIT-OSGroup-thesis-template-22eb2b0/diploma_thesis.tex",
+		"/Users/marcel/code/xbmcdisp/resources/pyserdisp/pyserdisp.py",
+		"/Users/marcel/Documents/plan.txt",
+		"/Users/marcel/Downloads/battleship/Test.java",
+		"/Users/marcel/Downloads/battleship/Sea.java",
+		"/Users/marcel/code/filetrain/build-FileTrain-Desktop_Qt_5_3_0_clang_64bit-Debug/FileTrain/Makefile",
+		"/Users/marcel/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/marcel/kit/zugangsdaten",
+		"/Users/marcel/kit/FAST-Skriptpasswort",
+		"/Users/marcel/kit/punkte",
+		"/Users/marcel/.xbmc/scripts/test.py",
+		"/Users/marcel/code/hmmwv/pin_notes.txt",
+		"/Users/marcel/kit/vrp/road_cache/tmp_movie.roadgeo",
+		"/Users/marcel/code/xbmcdisp/xbmcdisp/xbmcdisp.py",
+		"/Users/marcel/code/xbmcdisp/pyserdisp/graphdisp.py",
+		"/Users/marcel/code/xbmcdisp/pyserdisp/pyserdisp.py",
+		"/Users/marcel/code/xbmcdisp_clone/textrenderer.py",
+		"/Users/marcel/code/xbmcdisp/serdisplib.py",
+		"/Users/marcel/Documents/LEDs.md",
+		"/Users/marcel/kit/vrp/Zeitplan.md",
+		"/Users/marcel/Downloads/csvtmp.txt",
+		"/Users/marcel/kit/vrp/road_cache/tmp_movie_short.roadgeo",
+		"/Users/marcel/kit/vrp/road_cache/Examples_CarMakerFunctions_IPGRoad_Hockenheim.roadgeo",
+		"/Volumes/UNTITLED/Gruppe 2.1 Schnittstelle CarMakerPolyVR.txt",
+		"/Volumes/UNTITLED/git-url",
+		"/Volumes/Titel/opensg-url",
+		"/Users/marcel/kit/untitled folder/Zeitplan.md",
+		"/Users/marcel/code/filetrain/FileTrain/FileTrain/src/backend/serverinterface.cpp",
+		"/Users/marcel/code/lcd4linux/plugin_mpd.c",
+		"/Users/marcel/code/lcd4linux/plugin_raspi.c",
+		"/Users/marcel/code/lcd4linux/CodingStyle",
+		"/Users/marcel/code/filetrain/rsa_keys.txt",
+		"/Volumes/devices/ExtDaten2/movies/Anatomie einer Schießerei.nfo",
+		"/Users/marcel/Downloads/- Einleitungstext für Mobile zu lang",
+		"/Users/marcel/code/filetrain/cryptopptest.cpp",
+		"/Users/marcel/Downloads/Crypto++ EAX-AEAD Test/Sample.cpp",
+		"/Users/marcel/code/filetrain-documentation/threat_model.md",
+		"/Users/marcel/Downloads/Crypto++ EAX-AEAD Test/stdafx.cpp",
+		"/Users/marcel/code/filetrain/nacltest.cpp",
+		"/Users/marcel/code/go/src/github.com/tanuva/hmmwv-robot/ghost/remote/main.go",
+		"/Users/marcel/code/filetrain-documentation/Client-UML/filetrain.uml",
+		"/Users/marcel/kit/wasa1/notizen.md",
+		"/Users/marcel/kit/prosem/ausarbeitung/ausarbeitung.bib",
+		"/Users/marcel/kit/prosem/ausarbeitung/content.tex",
+		"/Users/marcel/Downloads/test.c",
+		"/Users/marcel/Downloads/otp.c",
+		"/Users/marcel/Downloads/test.py",
+		"/Users/marcel/code/unitruck/engine_model.md",
+		"/Users/marcel/Downloads/downl.txt",
+		"/Users/marcel/Downloads/gener.txt",
+		"/Users/marcel/Library/Application Support/UltraStarDeluxe/config.ini",
+		"/Users/marcel/code/filetrain/passwordhasher.cpp",
+		"/Users/marcel/code/go/src/github.com/tanuva/hmmwv-robot/ghost/remote/sdlcontroller.go",
+		"/Users/marcel/kit/hmmwv-robot/ghost/remote/main.go",
+		"/Users/marcel/kit/hmmwv-robot/ghost/gshell/main.go",
+		"/Users/marcel/kit/prosem/Notizen.md",
+		"/Users/marcel/code/hmmwv/hos/hoscore/CMakeLists.txt",
+		"/Users/marcel/code/filetrain/wizardexample/licensewizard.qrc",
+		"/Users/marcel/code/filetrain/wizardexample/licensewizard.pro",
+		"/Users/marcel/code/filetrain/wizardexample/licensewizard.cpp",
+		"/Users/marcel/code/filetrain/wizardexample/main.cpp",
+		"/Users/marcel/code/filetrain/wizardexample/licensewizard.h",
+		"/Users/marcel/code/filetrain/Botan-1.10.5/botan_all.h",
+		"/Users/marcel/code/hmmwv/hos/hoscore/hoscoreserver.cpp",
+		"/Users/marcel/code/hmmwv/hos/hoscore/hoscoreserver.hpp",
+		"/Users/marcel/kit/prosem/ausarbeitung/titlepage.tex",
+		"/Users/marcel/kit/prosem/ausarbeitung/ausarbeitung.tex",
+		"/Users/marcel/kit/prosem/vortrag/vortrag.tex",
+		"/Users/marcel/Library/Application Support/Sublime Text 2/Packages/User/Latex.sublime-build",
+		"/Users/marcel/kit/KIT-Vorlagen-Folien-LaTeX_06-12/KITbeamerXmpl/beamerthemeKIT.sty",
+		"/Users/marcel/kit/KIT-Vorlagen-Folien-LaTeX_06-12/KITbeamerXmpl/KIT-Folien-de.tex",
+		"/Users/marcel/kit/prosem/vortrag/teaser.html",
+		"/Users/marcel/kit/prosem/vortrag/teaser.md",
+		"/Users/marcel/kit/prosem/ausarbeitung/thesisclass.cls",
+		"/Users/marcel/kit/prosem/material/BYO3D/Lenticular Model Viewer/interlacer.frag",
+		"/Users/marcel/Downloads/adiumcrash_20131106.txt",
+		"/Users/marcel/Downloads/adiumcrash_20131105_2.txt",
+		"/Users/marcel/Downloads/adiumcrash_20131105.txt",
+		"/Users/marcel/code/filetrain-server/server-private-keyonly.pem",
+		"/Users/marcel/code/VRFramework_Xcode/conf/local/vr.cfg",
+		"/Users/marcel/code/hmmwv/xbox360controller.h",
+		"/Users/marcel/code/VRFramework/conf/install/mac_os/Mac_Setup.sh",
+		"/Users/marcel/code/VRFramework/conf/install/ubuntu/VRFramework.cbp.10.13",
+		"/Users/marcel/Documents/rofeltier.txt",
+		"/Users/marcel/code/ros_for_ios/log_short.txt",
+		"/Users/marcel/code/ros_for_ios/log.txt",
+		"/Users/marcel/code/filetrain/FileTrain/FileTrain/src/crypto.cpp",
+		"/Users/marcel/code/filetrain/FileTrain/FileTrain/include/crypto.hpp",
+		"/Users/marcel/code/filetrain/FileTrain/FileTrain/src/logintester.cpp",
+		"/Users/marcel/code/filetrain/FileTrain/FileTrainClient/src/loginsettingswindow.cpp",
+		"/Users/marcel/code/ros_for_ios/boostonios/boost.sh",
+		"/Users/marcel/code/ros_for_ios/build.sh",
+		"/Users/marcel/code/documentation/Client-UML/filetrain.uml",
+		"/Users/marcel/code/documentation/Client-UML/filetrain_crypto_sequence.uml",
+		"/Users/marcel/code/filetrain/FileTrain/build_msvc_project.bat",
+		"/Users/marcel/code/ros_for_ios/boostonios/build.log",
+		"/Users/marcel/Library/Application Support/Feral Interactive/Borderlands/MacInit/WillowGame.ini",
+		"/Users/marcel/Library/Application Support/Feral Interactive/Borderlands/MacInit/WillowInput.ini",
+		"/Users/marcel/Library/Application Support/Feral Interactive/Borderlands/MacInit/WillowEngine.ini",
+		"/Volumes/documentLibrary/Technik/Client-UML/filetrain.uml",
+		"/Volumes/documentLibrary/Technik/Client-UML/filetrain_crypto_sequence.uml",
+		"/Volumes/documentLibrary/Technik/Client-UML/filetrain_crypto.uml",
+		"/Users/marcel/code/filetrain/doc/filetrain_new.uml",
+		"/Volumes/webdav/Sites/filetrain/documentLibrary/Marketing/Use Cases/Ordner freigeben.uml",
+		"/Users/marcel/code/filetrain-server/doc/Dokumentation/dokumentation.tex",
+		"/Users/marcel/code/filetrain/doc/filetrain.uml",
+		"/Users/marcel/code/filetrain/doc/Startup Process.md",
+		"/Users/marcel/.config/FileTrain/FileTrain.ini",
+		"/Users/marcel/Library/Application Support/Sublime Text 2/Packages/sublime_diagram_plugin/diagram/plantuml.py",
+		"/Users/marcel/code/filetrain/doc/transfers-new.uml",
+		"/Users/marcel/code/filetrain/doc/startup.uml",
+		"/Users/marcel/Library/Application Support/Sublime Text 2/Packages/sublime_diagram_plugin/README.md",
+		"/Users/marcel/Library/Application Support/Sublime Text 2/Packages/sublime_diagram_plugin/README.txt",
+		"/Users/marcel/Library/Application Support/Sublime Text 2/Packages/sublime_diagram_plugin/Diagram.sublime-settings",
+		"/Users/marcel/Documents/Humboldtstraße/Umzug.md",
+		"/Users/marcel/Dropbox/English for Engineers C1/Resources Waste Water/Resource Collection MB.md",
+		"/Users/marcel/Dropbox/English for Engineers C1/Marcel/Reducing Rare Earth Usage in Electric Motors_dev.md",
+		"/Users/marcel/Dropbox/English for Engineers C1/Marcel/Energy Heat and Work_dev.md"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"xbmcdisp.py",
+			"graphdisp.py",
+			"",
+			"transfers-new.uml",
+			"",
+			"sequence_fetch_updates.uml",
+			"sequence_fech_updates.uml"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"ma",
+			"BLACK",
+			"self.disp",
+			"def material",
+			"def color",
+			"\\\\n",
+			"Fehlern",
+			"ef.",
+			" ]",
+			"[ ",
+			" )",
+			"( ",
+			" ]",
+			"[ ",
+			"( ",
+			" )",
+			"( ",
+			"TODO",
+			"Leuchtdichte",
+			"*",
+			"immernoch",
+			"TODO",
+			"\\.\\\\cite\\[S. [0-9]*\\]\\{[a-z|0-9]*\\}",
+			"\\.\\\\cite\\[S. [0-9]*\\]\\{[a-z|0-9|\\s]*\\}",
+			"\\.\\\\cite\\[S. [0-9]*\\]\\{[a-z|0-9]*\\}",
+			"TODO",
+			"nelfd",
+			"nvidia",
+			"USE_MAXIMUM",
+			"interlacer",
+			"Blickwinkel",
+			"\"",
+			" />",
+			"<Add option=\"",
+			"OSG",
+			"\" />",
+			"<Add option=\"",
+			"\" />",
+			"<Add option=\"",
+			"include",
+			"error",
+			"bzlib.h",
+			"VSync",
+			"ActiveJobs",
+			"Hasher",
+			"FieldOf",
+			"FOV",
+			"FieldOfV",
+			"FOV",
+			"Settings",
+			"Upload",
+			" : void",
+			"###",
+			"spaceship",
+			"TransferScheduler",
+			"NewManager",
+			"event",
+			" \n",
+			"\n",
+			"========\n",
+			"x",
+			"MV",
+			"SH",
+			"SL",
+			"BY",
+			"BW",
+			"SL",
+			"RP",
+			"SN",
+			"TH",
+			"HE",
+			"NW",
+			"BE",
+			"BB",
+			"ST",
+			"HB",
+			"NI",
+			"HH",
+			"mv",
+			"MV",
+			"SH",
+			"ServerInterface",
+			"Wolke.",
+			"Exponent",
+			"distance",
+			"gl_Vertex",
+			"prpl-jabber",
+			"tanuva@jabber.ccc.de/d-a318",
+			"prpl-icq",
+			"287318514"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"self.graphdisp",
+			"self.serdisp",
+			"\\n",
+			"ef->",
+			"]",
+			"[",
+			")",
+			"(",
+			"]",
+			"[",
+			"(",
+			")",
+			"(",
+			"Leuchtkraft",
+			"\\times",
+			"intl",
+			"Perspektive",
+			"",
+			"OSG2",
+			"",
+			"Download",
+			" ",
+			"##",
+			"wheel",
+			"TransferManager",
+			"signal",
+			"mv",
+			"sh",
+			"sl",
+			"by",
+			"bw",
+			"sl",
+			"rp",
+			"sn",
+			"th",
+			"he",
+			"nw",
+			"be",
+			"bb",
+			"st",
+			"hb",
+			"ni",
+			"hh",
+			"mv",
+			"sh",
+			"TransferScheduler",
+			"",
+			"L",
+			"viewPos",
+			"libpurple-Jabber",
+			"1",
+			"libpurple-oscar-ICQ",
+			"2"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "resources/pyserdisp/graphdisp.py",
+					"settings":
+					{
+						"buffer_size": 3786,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								915,
+								915
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 742.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "resources/pyserdisp/pyserdisp.py",
+					"settings":
+					{
+						"buffer_size": 5746,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								691,
+								691
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "xbmcdisp.py",
+					"settings":
+					{
+						"buffer_size": 4096,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1618,
+								1618
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 371.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 131.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
