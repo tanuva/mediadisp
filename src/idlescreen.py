@@ -4,6 +4,6 @@ class IdleScreen:
 	def __init__(self, disp):
 		self.disp = disp
 
-	def update(self, tags):
+	def update(self):
 		curTime = datetime.now()
-		self.graphDisp.drawText([0,0], "{:%H:%M}".format(curTime), (255), "center", "center", 52)
+		self.disp.drawText([0,0], "{:%H:%M}".format(curTime), (255), "center", "center", 52)
