@@ -18,20 +18,20 @@ if cmd_subfolder not in sys.path:
 	sys.path.insert(0, cmd_subfolder)
 # ======================
 
-from datetime import datetime
 from time import sleep
 import requests
 import json
 from graphdisp import GraphDisp
+from musicscreen import MusicScreen
+from idlescreen import IdleScreen
 
 class XbmcDisp:
 	def __init__(self, graphDisp):
 		self.graphDisp = graphDisp
-		self.graphDisp.drawText([0, 0], "Bananaa!", (255), "center", "center")
-		self.graphDisp.flip()
-
+		self.screens = {}
+		self.screens["music"] = MusicScreen(self.graphDisp)
+		self.screens["idle"] = IdleScreen(self.graphDisp)
 		self.headers = {'content-type': 'application/json'}
-
 		# Will contain player ids with player type as key (audio/video)
 		self.players = {}
 
@@ -86,7 +86,7 @@ class XbmcDisp:
 		#}
 		
 		item = result["result"]["item"]
-		item["artist"] = item["artist"][0]
+		item["artist"] = item["artist"][0] # artist is a list. wtf.
 		return item
 
 	def run(self):
@@ -96,20 +96,16 @@ class XbmcDisp:
 			# Due to race condition the player might be invalid till now
 			tags = self.__getPlayingAudio()
 			if tags:
-				self.graphDisp.drawText([0,0], tags["title"], (255), "left", "", 12)
-				self.graphDisp.drawText([0,13], tags["artist"], (255), "left", 10)
-				self.graphDisp.drawText([0,23], tags["album"], (255), "left", 10)
-				self.graphDisp.drawProgressBar([0,59], [128,5], .3)
+				self.screens["music"].update(tags)
 		else:
 			# Display something useful :)
-			curTime = datetime.now()
-			self.graphDisp.drawText([0,0], "{:%H:%M}".format(curTime), (255), "center", "center", 52)
+			self.screens["idle"].update()
 
 		self.graphDisp.flip()
 
 if __name__ == "__main__":
-	with GraphDisp("USB:7c0/1501", "CTINCLUD") as disp:
-		server = XbmcDisp(disp)
+	with GraphDisp("USB:7c0/1501", "CTINCLUD") as graphDisp:
+		disp = XbmcDisp(graphDisp)
 		while True:
-			server.run()
+			disp.run()
 			sleep(3)
