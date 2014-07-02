@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"__getP",
+				"__getPlayingAudio"
+			],
+			[
+				"BaseHt",
+				"BaseHTTPRequestHandler"
+			],
+			[
 				"isPlay",
 				"isPlayingVideo"
 			],
@@ -120,10 +128,18 @@
 	"buffers":
 	[
 		{
+			"file": "xbmcdisp.py",
+			"settings":
+			{
+				"buffer_size": 3529,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "resources/pyserdisp/graphdisp.py",
 			"settings":
 			{
-				"buffer_size": 3786,
+				"buffer_size": 4053,
 				"line_ending": "Unix"
 			}
 		},
@@ -136,10 +152,10 @@
 			}
 		},
 		{
-			"file": "xbmcdisp.py",
+			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 4096,
+				"buffer_size": 216,
 				"line_ending": "Unix"
 			}
 		}
@@ -180,6 +196,8 @@
 	},
 	"file_history":
 	[
+		"/Users/marcel/Library/Application Support/XBMC/addons/xbmcdisp/xbmcdisp.py",
+		"/Users/marcel/code/xbmcdisp/resources/dispserver/dispserver.py",
 		"/Users/marcel/code/xbmcdisp/resources/pyserdisp/graphdisp.py",
 		"/Users/marcel/kit/ba/notizen.md",
 		"/Users/marcel/code/xbmcdisp/resources/xbmcprovider.py",
@@ -305,9 +323,7 @@
 		"/Users/marcel/Library/Application Support/Sublime Text 2/Packages/sublime_diagram_plugin/README.txt",
 		"/Users/marcel/Library/Application Support/Sublime Text 2/Packages/sublime_diagram_plugin/Diagram.sublime-settings",
 		"/Users/marcel/Documents/Humboldtstraße/Umzug.md",
-		"/Users/marcel/Dropbox/English for Engineers C1/Resources Waste Water/Resource Collection MB.md",
-		"/Users/marcel/Dropbox/English for Engineers C1/Marcel/Reducing Rare Earth Usage in Electric Motors_dev.md",
-		"/Users/marcel/Dropbox/English for Engineers C1/Marcel/Energy Heat and Work_dev.md"
+		"/Users/marcel/Dropbox/English for Engineers C1/Resources Waste Water/Resource Collection MB.md"
 	],
 	"find":
 	{
@@ -492,23 +508,23 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "resources/pyserdisp/graphdisp.py",
+					"file": "xbmcdisp.py",
 					"settings":
 					{
-						"buffer_size": 3786,
+						"buffer_size": 3529,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								915,
-								915
+								3353,
+								3353
 							]
 						],
 						"settings":
@@ -517,13 +533,40 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 742.0,
+						"translation.y": 728.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "resources/pyserdisp/graphdisp.py",
+					"settings":
+					{
+						"buffer_size": 4053,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2450,
+								2450
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 674.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "resources/pyserdisp/pyserdisp.py",
 					"settings":
 					{
@@ -550,28 +593,27 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "xbmcdisp.py",
+					"buffer": 3,
+					"file": "README.md",
 					"settings":
 					{
-						"buffer_size": 4096,
+						"buffer_size": 216,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1618,
-								1618
+								216,
+								216
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 371.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
