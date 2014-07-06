@@ -1,8 +1,7 @@
-'''
-XBMCdisp plugin for XBMC >= 12.0
+"""
 Copyright 2014 Marcel 'tanuva' Brueggebors
 For license information, see the LICENSE file that must have come with this file.
-'''
+"""
 
 # =====================
 # Source: http://stackoverflow.com/questions/279237/import-a-module-from-a-relative-path
@@ -68,15 +67,15 @@ class XbmcDisp:
 	def __getPlayingAudio(self):
 		try:
 			query = {
+				'jsonrpc': '2.0',
+				'method': 'Player.GetItem',
+				'id': 'AudioGetItem',
 				'params': {
 					'playerid': self.__players["audio"],
 					'properties': [
-					'title', 'album', 'artist', 'duration'
+						'title', 'album', 'artist', 'duration'
 					]
-				},
-				'jsonrpc': '2.0',
-				'method': 'Player.GetItem',
-				'id': 'AudioGetItem'
+				}
 			}
 		except KeyError:
 			print "getPlayingAudio: No audio player known!"
@@ -101,13 +100,35 @@ class XbmcDisp:
 		item["artist"] = item["artist"][0] # artist is a list. wtf.
 		return item
 
+	def __getAudioPlayerPosition(self):
+		try:
+			query = {
+				'jsonrpc': '2.0',
+				'method': 'Player.GetProperties',
+				'id': 'GetPercentage',
+				'params': {
+					'playerid': self.__players["audio"],
+					'properties': [
+						'percentage'
+					]
+				}
+			}
+		except KeyError:
+			print "getPlayerPosition: No audio player known!"
+			return
+
+		result = self.__request(query)
+		if not result or not "result" in result.keys():
+			return None
+
+		return result["result"]["percentage"] / 100.0
+
 	def run(self):
 		# isDisplayOn needs the currently active players
 		if not self.__getPlayers():
 			self.__players = {}
 
 		isDisplayOn = self.isDisplayOn()
-		#print isDisplayOn, self.__players
 
 		if self.__wasDisplayOn and not isDisplayOn:
 			self.__graphDisp.serdisp.quit()
@@ -124,8 +145,9 @@ class XbmcDisp:
 			# Audio is playing
 			# Due to race condition the player might be invalid till now
 			tags = self.__getPlayingAudio()
+			progress = self.__getAudioPlayerPosition()
 			if tags:
-				self.__screens["music"].update(tags)
+				self.__screens["music"].update(tags, progress)
 		else:
 			# Display something useful :)
 			self.__screens["idle"].update()
