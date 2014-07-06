@@ -19,6 +19,7 @@ if cmd_subfolder not in sys.path:
 # ======================
 
 from time import sleep
+from datetime import datetime
 import requests
 import json
 from graphdisp import GraphDisp
@@ -27,21 +28,30 @@ from idlescreen import IdleScreen
 
 class XbmcDisp:
 	def __init__(self, graphDisp):
-		self.graphDisp = graphDisp
-		self.screens = {}
-		self.screens["music"] = MusicScreen(self.graphDisp)
-		self.screens["idle"] = IdleScreen(self.graphDisp)
-		self.headers = {'content-type': 'application/json'}
+		self.__graphDisp = graphDisp
+		self.__wasDisplayOn = True
+		self.__screens = {}
+		self.__screens["music"] = MusicScreen(self.__graphDisp)
+		self.__screens["idle"] = IdleScreen(self.__graphDisp)
+		self.__headers = {'content-type': 'application/json'}
 		# Will contain player ids with player type as key (audio/video)
-		self.players = {}
+		self.__players = {}
 
 	def __request(self, data):
-		r = requests.post("http://pi:8080/jsonrpc", json.dumps(data), headers=self.headers)
+		try:
+			r = requests.post("http://localhost:8080/jsonrpc", json.dumps(data), headers=self.__headers)
+		except Exception, e:
+			print e
+			print "Couldn't connect to XBMC. Retrying..."
+			return None
 		return r.json()
 
 	def __getPlayers(self):
 		query = {"jsonrpc": "2.0", "method": "Player.GetActivePlayers", "id": 1}
 		result = self.__request(query)
+		if not result:
+			return None
+
 		#{
 		#	"id":1,
 		#	"jsonrpc":"2.0",
@@ -50,16 +60,16 @@ class XbmcDisp:
 		#		"type": "audio"
 		#	}]
 		#}
-		self.players = {}
+		self.__players = {}
 		for player in result["result"]:
-			self.players[player["type"]] = player["playerid"]
-		return self.players
+			self.__players[player["type"]] = player["playerid"]
+		return self.__players
 
 	def __getPlayingAudio(self):
 		try:
 			query = {
 				'params': {
-					'playerid': self.players["audio"],
+					'playerid': self.__players["audio"],
 					'properties': [
 					'title', 'album', 'artist', 'duration'
 					]
@@ -73,6 +83,8 @@ class XbmcDisp:
 			return
 
 		result = self.__request(query)
+		if not result:
+			return None
 		#{	u'jsonrpc': u'2.0',
 		#	u'id': u'AudioGetItem',
 		#	u'result': {
@@ -90,18 +102,49 @@ class XbmcDisp:
 		return item
 
 	def run(self):
-		self.__getPlayers()
-		if "audio" in self.players.keys():
+		# isDisplayOn needs the currently active players
+		if not self.__getPlayers():
+			self.__players = {}
+
+		isDisplayOn = self.isDisplayOn()
+		#print isDisplayOn, self.__players
+
+		if self.__wasDisplayOn and not isDisplayOn:
+			self.__graphDisp.serdisp.quit()
+			self.__wasDisplayOn = False
+		elif not self.__wasDisplayOn and isDisplayOn:
+			self.__graphDisp.serdisp.init()
+			self.__graphDisp.serdisp.clear()
+			self.__wasDisplayOn = True
+
+		if not isDisplayOn:
+			return
+
+		if "audio" in self.__players.keys():
 			# Audio is playing
 			# Due to race condition the player might be invalid till now
 			tags = self.__getPlayingAudio()
 			if tags:
-				self.screens["music"].update(tags)
+				self.__screens["music"].update(tags)
 		else:
 			# Display something useful :)
-			self.screens["idle"].update()
+			self.__screens["idle"].update()
 
-		self.graphDisp.flip()
+		self.__graphDisp.serdisp.update()
+
+	def isDisplayOn(self):
+		curTime = datetime.now()
+		isOn = False
+
+		# rule priority increasing downward (obviously)
+		if curTime.hour > 9 and curTime.hour < 23:
+			isOn = True
+		if "audio" in self.__players.keys():
+			isOn = True
+		if "video" in self.__players.keys():
+			isOn = False
+
+		return isOn
 
 if __name__ == "__main__":
 	with GraphDisp("USB:7c0/1501", "CTINCLUD") as graphDisp:
