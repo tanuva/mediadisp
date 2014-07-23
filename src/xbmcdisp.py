@@ -21,24 +21,24 @@ from time import sleep
 from datetime import datetime
 import requests
 import json
-from graphdisp import GraphDisp
+from pyserdisp import Serdisp
 from musicscreen import MusicScreen
 from idlescreen import IdleScreen
 
 class XbmcDisp:
-	def __init__(self, graphDisp):
-		self.__graphDisp = graphDisp
+	def __init__(self, serdisp):
+		self.__serdisp = serdisp
 		self.__wasDisplayOn = True
 		self.__screens = {}
-		self.__screens["music"] = MusicScreen(self.__graphDisp)
-		self.__screens["idle"] = IdleScreen(self.__graphDisp)
+		self.__screens["music"] = MusicScreen(self.__serdisp)
+		self.__screens["idle"] = IdleScreen(self.__serdisp)
 		self.__headers = {'content-type': 'application/json'}
 		# Will contain player ids with player type as key (audio/video)
 		self.__players = {}
 
 	def __request(self, data):
 		try:
-			r = requests.post("http://localhost:8080/jsonrpc", json.dumps(data), headers=self.__headers)
+			r = requests.post("http://localhost:80/jsonrpc", json.dumps(data), headers=self.__headers)
 		except Exception, e:
 			print e
 			print "Couldn't connect to XBMC. Retrying..."
@@ -131,11 +131,11 @@ class XbmcDisp:
 		isDisplayOn = self.isDisplayOn()
 
 		if self.__wasDisplayOn and not isDisplayOn:
-			self.__graphDisp.serdisp.quit()
+			self.__serdisp.quit()
 			self.__wasDisplayOn = False
 		elif not self.__wasDisplayOn and isDisplayOn:
-			self.__graphDisp.serdisp.init()
-			self.__graphDisp.serdisp.clear()
+			self.__serdisp.init()
+			self.__serdisp.clear()
 			self.__wasDisplayOn = True
 
 		if not isDisplayOn:
@@ -152,14 +152,14 @@ class XbmcDisp:
 			# Display something useful :)
 			self.__screens["idle"].update()
 
-		self.__graphDisp.serdisp.update()
+		self.__serdisp.update()
 
 	def isDisplayOn(self):
 		curTime = datetime.now()
 		isOn = False
 
 		# rule priority increasing downward (obviously)
-		if curTime.hour > 9 and curTime.hour < 23:
+		if curTime.hour >= 9 and curTime.hour < 23:
 			isOn = True
 		if "audio" in self.__players.keys():
 			isOn = True
@@ -169,8 +169,8 @@ class XbmcDisp:
 		return isOn
 
 if __name__ == "__main__":
-	with GraphDisp("USB:7c0/1501", "CTINCLUD") as graphDisp:
-		disp = XbmcDisp(graphDisp)
+	with Serdisp("USB:7c0/1501", "CTINCLUD") as serdisp:
+		disp = XbmcDisp(serdisp)
 		while True:
 			disp.run()
 			sleep(3)
