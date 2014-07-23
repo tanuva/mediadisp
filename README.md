@@ -8,6 +8,7 @@ Dependencies
 ============
 
 Packages from pip: freetype-py, pillow, requests
+
 Pillow requires Python headers to be installed (python-dev on Debian Wheezy).
 
 Customization
