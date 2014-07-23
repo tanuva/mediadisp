@@ -21,6 +21,7 @@ from time import sleep
 from datetime import datetime
 import requests
 import json
+from settings import Settings
 from pyserdisp import Serdisp
 from musicscreen import MusicScreen
 from idlescreen import IdleScreen
@@ -38,7 +39,11 @@ class XbmcDisp:
 
 	def __request(self, data):
 		try:
-			r = requests.post("http://localhost:80/jsonrpc", json.dumps(data), headers=self.__headers)
+			url = Settings.xbmcHost
+			if not url[-1] == "/":
+				url = url + "/"
+			url = url + "jsonrpc"
+			r = requests.post(url, json.dumps(data), headers=self.__headers)
 		except Exception, e:
 			print e
 			print "Couldn't connect to XBMC. Retrying..."
@@ -169,7 +174,7 @@ class XbmcDisp:
 		return isOn
 
 if __name__ == "__main__":
-	with Serdisp("USB:7c0/1501", "CTINCLUD") as serdisp:
+	with Serdisp(Settings.dispDevice, Settings.dispModel) as serdisp:
 		disp = XbmcDisp(serdisp)
 		while True:
 			disp.run()
