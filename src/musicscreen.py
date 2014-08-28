@@ -1,5 +1,5 @@
 from datetime import datetime
-import graphdisp as gd
+import widget as gd
 
 class MusicScreen:
 	def __init__(self, disp):
