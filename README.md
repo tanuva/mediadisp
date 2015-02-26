@@ -3,6 +3,7 @@ xbmcdisp
 
 A piece of code that displays information from XBMC on an external display connected via serdisplib.
 Connects to XBMC via json-rpc, therefore a configuration file will be needed at some point... :)
+It shows music metadata while playing music and a clock in idle. Apart from that the backlight is turned off while playing movies - we don't want to disturb.
 
 Dependencies
 ============
@@ -14,5 +15,5 @@ Pillow requires Python headers to be installed (python-dev on Debian Wheezy).
 Customization
 =============
 
-Adjust `musicscreen.py` and/or `idlescreen.py` to your needs. I haven't included my background images ("layouts") to keep the repository free from binary blobs, but I can publish them if requested.
+Adjust `musicscreen.py` and/or `idlescreen.py` to your needs. I have included the background images I currently use for reference. Depending on your display you'll want to draw your own.
 
