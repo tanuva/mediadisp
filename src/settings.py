@@ -6,7 +6,7 @@ class Settings:
 
 	# URL of your XBMC instance's web interface.
 	#xbmcHost = "http://raspberry.pi:80"
-	xbmcHost = "http://localhost:80"
+	xbmcHost = "http://localhost:8080"
 
 	# Display device as Serdisplib expects it
 	# See http://serdisplib.sourceforge.net/docs/index.html#serdisp_connect__SDCONN_open
