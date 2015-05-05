@@ -1,9 +1,10 @@
 xbmcdisp
 ========
 
-A piece of code that displays information from XBMC on an external display connected via serdisplib.
+A piece of code that displays information from Kodi (formerly XBMC) on an external display connected via serdisplib.
 Connects to XBMC via json-rpc, therefore a configuration file will be needed at some point... :)
 It shows music metadata while playing music and a clock in idle. Apart from that the backlight is turned off while playing movies - we don't want to disturb.
+Just to have it said: this works with Kodi as well as XBMC. The relevant parts of the JSON interface don't seem to have changed (yet).
 
 Dependencies
 ============
