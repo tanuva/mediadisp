@@ -101,9 +101,16 @@ class XbmcDisp:
 		#		}
 		#	}
 		#}
-		
+		print result
+		if "error" in result:
+			return { 'album': "",
+				'artist': result["error"]["message"],
+				'title': "Error" }
 		item = result["result"]["item"]
-		item["artist"] = item["artist"][0] # artist is a list. wtf.
+		if len(item["artist"]) > 0:
+			item["artist"] = item["artist"][0] # artist is a list. wtf.
+		else:
+			item["artist"] = ""
 		return item
 
 	def __getAudioPlayerPosition(self):
