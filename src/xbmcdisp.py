@@ -101,16 +101,25 @@ class XbmcDisp:
 		#		}
 		#	}
 		#}
-		print result
+
 		if "error" in result:
 			return { 'album': "",
 				'artist': result["error"]["message"],
 				'title': "Error" }
 		item = result["result"]["item"]
-		if len(item["artist"]) > 0:
-			item["artist"] = item["artist"][0] # artist is a list. wtf.
-		else:
-			item["artist"] = ""
+
+		# Kodi seldomly served weird results here. This didn't crash for quite a while though,
+		# so either the workaround is actually working around or Kodi was fixed. Was never able
+		# to track this down completely. :)
+		try:
+			if "artist" in item.keys() and len(item["artist"]) > 0:
+				item["artist"] = item["artist"][0] # artist is a list. wtf.
+			else:
+				item["artist"] = ""
+				item["album"] = ""
+		except:
+			# something strange is happening
+			print "ERROR: len(item[\"artist\"]) failed on this data:", result
 		return item
 
 	def __getAudioPlayerPosition(self):
