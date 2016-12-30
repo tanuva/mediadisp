@@ -10,9 +10,9 @@ It shows music metadata while playing music and a clock in idle. Apart from that
 Dependencies
 ============
 
-Packages from pip: freetype-py, pillow, requests
+Debian packages: `sudo aptitude install python-dev libjpeg-dev`
 
-Pillow requires Python headers to be installed (python-dev on Debian Wheezy).
+Packages from pip: `sudo pip install freetype-py pillow requests`
 
 Customization
 =============
