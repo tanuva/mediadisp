@@ -1,5 +1,5 @@
 """
-Copyright 2014-2015 Marcel 'tanuva' Brueggebors
+Copyright 2014-2017 Marcel 'tanuva' Kummer
 For license information, see the LICENSE file that must have come with this file.
 """
 
