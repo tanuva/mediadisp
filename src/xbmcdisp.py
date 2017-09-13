@@ -195,4 +195,4 @@ if __name__ == "__main__":
 		disp = XbmcDisp(serdisp)
 		while True:
 			disp.run()
-			sleep(3)
+			sleep(10)
