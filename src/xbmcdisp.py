@@ -181,7 +181,7 @@ class XbmcDisp:
 		isOn = False
 
 		# rule priority increasing downward (obviously)
-		if curTime.hour >= 9 and curTime.hour < 23:
+		if curTime.hour >= 8 and curTime.hour < 23:
 			isOn = True
 		if "audio" in self.__players.keys():
 			isOn = True
