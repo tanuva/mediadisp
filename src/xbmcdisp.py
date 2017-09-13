@@ -23,7 +23,7 @@ import requests
 import json
 from settings import Settings
 from pyserdisp import Serdisp
-from musicscreen import MusicScreen
+from xmbcscreen import MusicScreen
 from idlescreen import IdleScreen
 
 class XbmcDisp:
