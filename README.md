@@ -1,11 +1,11 @@
-xbmcdisp
+mediadisp
 ========
 
-A piece of code that displays information from Kodi/XBMC on an external display connected via serdisplib.
-Connects to Kodi via json-rpc, tell `settings.py` where your Kodi is... :)
+A piece of code that displays information from Plex Media Server (earlier: Kodi/XBMC) on an external display connected via serdisplib.
+For setup details, copy `settings.default.py` and adapt. You have all the power of the snake. :)
 It shows music metadata while playing music and a clock in idle. Apart from that the backlight is turned off while playing movies - we don't want to disturb.
 
-![xbmcdisp running on a c't includ USB display](https://github.com/tanuva/xbmcdisp/blob/master/running.jpg)
+![running on a c't includ USB display](https://github.com/tanuva/xbmcdisp/blob/master/running.jpg)
 
 Dependencies
 ============

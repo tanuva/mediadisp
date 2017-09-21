@@ -23,10 +23,10 @@ import requests
 import json
 from settings import Settings
 from pyserdisp import Serdisp
-from xmbcscreen import MusicScreen
+from xbmcscreen import MusicScreen
 from idlescreen import IdleScreen
 
-class XbmcDisp:
+class MediaDisp:
 	def __init__(self, serdisp):
 		self.__serdisp = serdisp
 		self.__wasDisplayOn = True
@@ -192,7 +192,7 @@ class XbmcDisp:
 
 if __name__ == "__main__":
 	with Serdisp(Settings.dispDevice, Settings.dispModel) as serdisp:
-		disp = XbmcDisp(serdisp)
+		disp = MediaDisp(serdisp)
 		while True:
 			disp.run()
 			sleep(10)
