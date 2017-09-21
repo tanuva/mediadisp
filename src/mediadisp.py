@@ -19,8 +19,6 @@ if cmd_subfolder not in sys.path:
 
 from time import sleep
 from datetime import datetime
-import requests
-import json
 from settings import Settings
 from pyserdisp import Serdisp
 from xbmcscreen import MusicScreen
@@ -31,126 +29,16 @@ class MediaDisp:
 		self.__serdisp = serdisp
 		self.__wasDisplayOn = True
 		self.__screens = {}
-		self.__screens["music"] = MusicScreen(self.__serdisp)
-		self.__screens["idle"] = IdleScreen(self.__serdisp)
-		self.__headers = {'content-type': 'application/json'}
-		# Will contain player ids with player type as key (audio/video)
-		# { "audio": 1, "video": 2 }
-		self.__players = {}
+		self.__screens["music"] = MusicScreen(self.__serdisp, Settings)
+		self.__screens["idle"] = IdleScreen(self.__serdisp, Settings)
 
-	def __request(self, data):
-		try:
-			url = Settings.xbmcHost
-			if not url[-1] == "/":
-				url = url + "/"
-			url = url + "jsonrpc"
-			r = requests.post(url, json.dumps(data), headers=self.__headers)
-		except Exception, e:
-			print e
-			print "Couldn't connect to XBMC. Retrying..."
-			return None
-		return r.json()
-
-	def __getPlayers(self):
-		query = {"jsonrpc": "2.0", "method": "Player.GetActivePlayers", "id": 1}
-		result = self.__request(query)
-		if not result:
-			return None
-
-		#{
-		#	"id":1,
-		#	"jsonrpc":"2.0",
-		#	"result": [{
-		#		"playerid": 0,
-		#		"type": "audio"
-		#	}]
-		#}
-		self.__players = {}
-		for player in result["result"]:
-			self.__players[player["type"]] = player["playerid"]
-		return self.__players
-
-	def __getPlayingAudio(self):
-		try:
-			query = {
-				'jsonrpc': '2.0',
-				'method': 'Player.GetItem',
-				'id': 'AudioGetItem',
-				'params': {
-					'playerid': self.__players["audio"],
-					'properties': [
-						'title', 'album', 'artist', 'duration'
-					]
-				}
-			}
-		except KeyError:
-			print "getPlayingAudio: No audio player known!"
-			return
-
-		result = self.__request(query)
-		if not result:
-			return None
-		#{	u'jsonrpc': u'2.0',
-		#	u'id': u'AudioGetItem',
-		#	u'result': {
-		#		u'item': {
-		#			u'album': u'Fu\xdfball, WWDC-Nachlese und Google I/O',
-		#			u'artist': [u'Freak Show'],
-		#			u'title': u'FS135 Das Update ist jetzt freigegeben',
-		#			u'duration': 0
-		#		}
-		#	}
-		#}
-
-		if "error" in result:
-			return { 'album': "",
-				'artist': result["error"]["message"],
-				'title': "Error" }
-		item = result["result"]["item"]
-
-		# Kodi seldomly served weird results here. This didn't crash for quite a while though,
-		# so either the workaround is actually working around or Kodi was fixed. Was never able
-		# to track this down completely. :)
-		try:
-			if "artist" in item.keys() and len(item["artist"]) > 0:
-				item["artist"] = item["artist"][0] # artist is a list. wtf.
-			else:
-				item["artist"] = ""
-				item["album"] = ""
-		except:
-			# something strange is happening
-			print "ERROR: len(item[\"artist\"]) failed on this data:", result
-		return item
-
-	def __getAudioPlayerPosition(self):
-		try:
-			query = {
-				'jsonrpc': '2.0',
-				'method': 'Player.GetProperties',
-				'id': 'GetPercentage',
-				'params': {
-					'playerid': self.__players["audio"],
-					'properties': [
-						'percentage'
-					]
-				}
-			}
-		except KeyError:
-			print "getPlayerPosition: No audio player known!"
-			return
-
-		result = self.__request(query)
-		if not result or not "result" in result.keys():
-			return None
-
-		return result["result"]["percentage"] / 100.0
+	def __s(self, name):
+		return self.__screens[name]
 
 	def run(self):
 		# isDisplayOn needs the currently active players
-		if not self.__getPlayers():
-			self.__players = {}
-
-		isDisplayOn = self.isDisplayOn()
+		players = self.__s("music").getPlayers()
+		isDisplayOn = self.isDisplayOn(players)
 
 		if self.__wasDisplayOn and not isDisplayOn:
 			self.__serdisp.quit()
@@ -163,29 +51,24 @@ class MediaDisp:
 		if not isDisplayOn:
 			return
 
-		if "audio" in self.__players.keys():
-			# Audio is playing
-			# Due to race condition the player might be invalid till now
-			tags = self.__getPlayingAudio()
-			progress = self.__getAudioPlayerPosition()
-			if tags:
-				self.__screens["music"].update(tags, progress)
+		if "audio" in players:
+			self.__s("music").update()
 		else:
 			# Display something useful :)
-			self.__screens["idle"].update()
+			self.__s("idle").update()
 
 		self.__serdisp.update()
 
-	def isDisplayOn(self):
+	def isDisplayOn(self, players):
 		curTime = datetime.now()
 		isOn = False
 
 		# rule priority increasing downward (obviously)
 		if curTime.hour >= 8 and curTime.hour < 23:
 			isOn = True
-		if "audio" in self.__players.keys():
+		if "audio" in players:
 			isOn = True
-		if "video" in self.__players.keys():
+		if "video" in players:
 			isOn = False
 
 		return isOn
