@@ -8,6 +8,12 @@ class Settings:
 	#xbmcHost = "http://raspberry.pi:80"
 	xbmcHost = "http://localhost:8080"
 
+	plex = {
+		"user": "your@myplex.user",
+		"password": "your_myplex_password",
+		"servername": "human-readable Plex server name"
+	}
+
 	# Display device as Serdisplib expects it
 	# See http://serdisplib.sourceforge.net/docs/index.html#serdisp_connect__SDCONN_open
 	#dispDevice = "USB:7c0/1501"
