@@ -14,6 +14,8 @@ class PlexDataProvider:
 		for medium in self.__plex.sessions():
 			if len(medium.session) < 1:
 				continue
+			if medium.session[0].location == "lan":
+				return medium
 		return None
 
 	def getPlayers(self):
