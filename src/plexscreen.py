@@ -8,33 +8,40 @@ class PlexDataProvider:
 		account = MyPlexAccount(settings.plex["user"], settings.plex["password"])
 		self.__plex = account.resource(settings.plex["servername"]).connect()
 
+	def __getLocalMedium(self):
+		# sessions() seems to return plexapi.audio.Track instances when playing
+		# music. Maybe other classes for different media.
+		for medium in self.__plex.sessions():
+			if len(medium.session) < 1:
+				continue
+		return None
+
 	def getPlayers(self):
-		sessions = self.__plex.sessions()
-		return ["audio"] if len(sessions) > 0 else []
+		medium = self.__getLocalMedium()
+		return ["audio"] if medium else []
 
 	def getPlayingAudio(self):
-		sessions = self.__plex.sessions()
-		if len(sessions) == 0:
+		medium = self.__getLocalMedium()
+		if not medium:
 			return {
 				"artist": "",
 				"album": "",
 				"title": ""
 			}
 
-		session = sessions[0]
 		return {
-			"artist": session.artist().title,
-			"album": session.parentTitle,
-			"title": session.title
+			"artist": medium.artist().title,
+			"album": medium.parentTitle,
+			"title": medium.title
 		}
 
 	def getAudioPlayerPosition(self):
-		sessions = self.__plex.sessions()
-		if len(sessions) == 0:
+		medium = self.__getLocalMedium()
+		if not medium:
 			return 0
 
-		duration = float(sessions[0].duration)
-		current = float(sessions[0].viewOffset)
+		duration = float(medium.duration)
+		current = float(medium.viewOffset)
 		return current / duration
 
 class MusicScreen:
