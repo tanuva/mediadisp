@@ -19,8 +19,18 @@ class PlexDataProvider:
 		return None
 
 	def getPlayers(self):
+		# medium.type element [movie, track, episode]
 		medium = self.__getLocalMedium()
-		return ["audio"] if medium else []
+		if medium == None:
+			return []
+
+		if medium.type == "movie" or medium.type == "episode":
+			return ["video"]
+		elif medium.type == "track":
+			return ["audio"]
+		else:
+			print("Unexpected medium type: " + medium.type)
+			return []
 
 	def getPlayingAudio(self):
 		medium = self.__getLocalMedium()
