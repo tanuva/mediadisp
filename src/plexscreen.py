@@ -1,5 +1,6 @@
 from datetime import datetime
 from plexapi.myplex import MyPlexAccount
+import traceback
 import widget as gd
 
 class PlexDataProvider:
@@ -20,7 +21,13 @@ class PlexDataProvider:
 
 	def getPlayers(self):
 		# medium.type element [movie, track, episode]
-		medium = self.__getLocalMedium()
+                medium = None
+                try:
+		    medium = self.__getLocalMedium()
+                except Exception as e:
+                    print("getPlayers(): Exception occurred. Probably Plex server offline?")
+                    traceback.format_exc()
+
 		if medium == None:
 			return []
 
@@ -73,8 +80,7 @@ class MusicScreen:
 		self.plex = PlexDataProvider(settings)
 
 	def getPlayers(self):
-		players = self.plex.getPlayers()
-		return players
+		return self.plex.getPlayers()
 
 	def update(self):
 		tags = self.plex.getPlayingAudio()
