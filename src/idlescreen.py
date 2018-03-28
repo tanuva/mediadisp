@@ -13,14 +13,18 @@ class ICalPoller:
 		if (datetime.now() - self.lastCalendarPoll).days < 1:
 			return self.iCalText
 
-		response = requests.get(self.url)
-		if not response.status_code == 200:
-			print("Error fetching calendar. HTTP status:", response.status_code)
-			return self.iCalText
+		try:
+                    response = requests.get(self.url)
+		    if not response.status_code == 200:
+			    print("Error fetching calendar. HTTP status:", response.status_code)
+			    return "Nope."
 
-		self.iCalText = response.text
-		self.lastCalendarPoll = datetime.now()
-		return self.iCalText
+                    self.iCalText = response.text
+		    self.lastCalendarPoll = datetime.now()
+		    return self.iCalText
+                except:
+                    print("Calendar GET request failed:", self.url)
+                    return "Nope."
 
 	def getEvent(self, title):
 		cal = Calendar.from_ical(self.getCalendarText())
