@@ -9,7 +9,7 @@ class ICalPoller:
         self.lastCalendarPoll = datetime(1970, 1, 1)
         self.iCalText = ""
 
-    def getCalendarText(self):
+    def __getCalendarText(self):
         if (datetime.now() - self.lastCalendarPoll).days < 1:
             return self.iCalText
 
@@ -27,7 +27,11 @@ class ICalPoller:
             return "Nope."
 
     def getEvent(self, title):
-        cal = Calendar.from_ical(self.getCalendarText())
+        calendarText = self.__getCalendarText()
+        if calendarText == None:
+            return {}
+
+        cal = Calendar.from_ical(calendarText)
         countdownEvent = None
         for component in cal.subcomponents:
             if "SUMMARY" in component.keys() and component["SUMMARY"] == title:
@@ -45,6 +49,9 @@ class IdleScreen:
 
     def daysLeft(self):
         event = self.poller.getEvent(self.settings.countdown["eventTitle"])
+        if event == {}:
+            return "<meep>"
+
         interval = event['DTSTART'].dt - datetime.now().date()
         return interval.days
 
