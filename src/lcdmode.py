@@ -1,9 +1,0 @@
-class LcdMode:
-	GENERAL = 0
-	NAVIGATION = 2
-	SCREENSAVER = 3
-	PVRTV = 4
-	PVRRADIO = 5
-	TVSHOW = 6
-	VIDEO = 7
-	MUSIC = 8
