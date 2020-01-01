@@ -61,5 +61,7 @@ class IdleScreen:
         self.time.setText("{:%H:%M}".format(curTime))
         self.time.draw()
         if self.settings.countdown["enabled"]:
-            self.days.setText("{0} Tage".format(self.daysLeft()))
+            count = self.daysLeft()
+            template = "{0} Tag" if abs(count) == 1 else "{0} Tage"
+            self.days.setText(template.format(count))
             self.days.draw()
