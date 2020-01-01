@@ -63,8 +63,14 @@ class MediaDisp:
         curTime = datetime.now()
         isOn = False
 
+        def isNewYearsEve():
+            return ((curTime.day == 31 and curTime.month == 12 and curTime.hour >= 7)
+                or (curTime.day == 1 and curTime.month == 1 and curTime.hour < 2))
+
         # rule priority increasing downward (obviously)
         if curTime.hour >= 7 and curTime.hour < 23:
+            isOn = True
+        if isNewYearsEve():
             isOn = True
         if "audio" in players:
             isOn = True
