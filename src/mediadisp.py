@@ -21,7 +21,7 @@ from time import sleep
 from datetime import datetime
 from settings import Settings
 from pyserdisp import Serdisp
-from plexscreen import MusicScreen
+from musicscreen import MusicScreen
 from idlescreen import IdleScreen
 
 class MediaDisp:
