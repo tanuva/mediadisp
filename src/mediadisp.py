@@ -36,9 +36,8 @@ class MediaDisp:
         return self.__screens[name]
 
     def run(self):
-        # isDisplayOn needs the currently active players
-        players = self.__s("music").getPlayers()
-        isDisplayOn = self.isDisplayOn(players)
+        musicRunning = self.__s("music").hasContent()
+        isDisplayOn = self.isDisplayOn(musicRunning)
 
         if self.__wasDisplayOn and not isDisplayOn:
             self.__serdisp.quit()
@@ -51,7 +50,7 @@ class MediaDisp:
         if not isDisplayOn:
             return
 
-        if "audio" in players:
+        if musicRunning:
             self.__s("music").update()
         else:
             # Display something useful :)
@@ -59,7 +58,7 @@ class MediaDisp:
 
         self.__serdisp.update()
 
-    def isDisplayOn(self, players):
+    def isDisplayOn(self, musicRunning):
         curTime = datetime.now()
         isOn = False
 
@@ -72,10 +71,8 @@ class MediaDisp:
             isOn = True
         if isNewYearsEve():
             isOn = True
-        if "audio" in players:
+        if musicRunning:
             isOn = True
-        if "video" in players:
-            isOn = False
 
         return isOn
 

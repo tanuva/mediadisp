@@ -85,8 +85,8 @@ class MusicScreen:
 
         self.plex = PlexDataProvider(settings)
 
-    def getPlayers(self):
-        return self.plex.getPlayers()
+    def hasContent(self):
+        return len(self.plex.getPlayers()) > 0
 
     def update(self):
         tags = self.plex.getPlayingAudio()
