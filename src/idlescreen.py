@@ -13,24 +13,15 @@ class ICalPoller:
         if (datetime.now() - self.lastCalendarPoll).days < 1:
             return self.iCalText
 
-        try:
-            response = requests.get(self.url)
-            if not response.status_code == 200:
-                print("Error fetching calendar. HTTP status:", response.status_code)
-                return "Nope."
+        response = requests.get(self.url)
+        response.raise_for_status()
 
-            self.iCalText = response.text
-            self.lastCalendarPoll = datetime.now()
-            return self.iCalText
-        except:
-            print("Calendar GET request failed:", self.url)
-            return "Nope."
+        self.iCalText = response.text
+        self.lastCalendarPoll = datetime.now()
+        return self.iCalText
 
     def getEvent(self, title):
         calendarText = self.__getCalendarText()
-        if calendarText == None:
-            return {}
-
         cal = Calendar.from_ical(calendarText)
         countdownEvent = None
         for component in cal.subcomponents:
@@ -49,9 +40,6 @@ class IdleScreen:
 
     def daysLeft(self):
         event = self.poller.getEvent(self.settings.countdown["eventTitle"])
-        if event == {}:
-            return "<meep>"
-
         interval = event['DTSTART'].dt - datetime.now().date()
         return interval.days
 
@@ -61,7 +49,12 @@ class IdleScreen:
         self.time.setText("{:%H:%M}".format(curTime))
         self.time.draw()
         if self.settings.countdown["enabled"]:
-            count = self.daysLeft()
-            template = "{0} Tag" if abs(count) == 1 else "{0} Tage"
-            self.days.setText(template.format(count))
+            try:
+                count = self.daysLeft()
+                template = "{0} Tag" if abs(count) == 1 else "{0} Tage"
+                self.days.setText(template.format(count))
+            except requests.exceptions.RequestException as e:
+                print(e.message)
+                # Display something remotely useful to the user
+                self.days.setText(type(e).__name__)
             self.days.draw()
