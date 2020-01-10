@@ -83,14 +83,25 @@ class MusicScreen:
         # progress bar
         self.progress = gd.Progressbar(disp, [0,30], [128,4], border=False)
 
-        self.plex = PlexDataProvider(settings)
+        self.dataProviders = [
+            PlexDataProvider(settings)
+        ]
 
     def hasContent(self):
-        return len(self.plex.getPlayers()) > 0
+        for provider in self.dataProviders:
+            return len(provider.getPlayers()) > 0
 
     def update(self):
-        tags = self.plex.getPlayingAudio()
-        progress = self.plex.getAudioPlayerPosition()
+        # TODO Breaks if no provider has data. Shouldn't happen though since
+        # this screen shouldn't be active then anyway.
+        tags = None
+        progress = 0
+
+        for provider in self.dataProviders:
+            if "audio" in provider.getPlayers():
+                tags = provider.getPlayingAudio()
+                progress = provider.getAudioPlayerPosition()
+                break
 
         self.bg.draw()
         curTime = datetime.now()
