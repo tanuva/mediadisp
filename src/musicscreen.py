@@ -1,5 +1,6 @@
 from datetime import datetime
 from plexapi.myplex import MyPlexAccount
+import paho.mqtt.client as mqtt
 import traceback
 import widget as gd
 
@@ -69,6 +70,67 @@ class PlexDataProvider:
         current = float(medium.viewOffset)
         return current / duration
 
+
+def on_connect(client, provider, flags, rc):
+    print("Connected to MQTT broker")
+    client.subscribe("shairport-sync/idefix/#")
+
+def on_message(client, provider, msg):
+    print("Unhandled topic: %s" % (msg.topic))
+
+def on_album(client, provider, msg):
+    provider.metadata["album"] = str(msg.payload)
+
+def on_artist(client, provider, msg):
+    provider.metadata["artist"] = str(msg.payload)
+
+def on_title(client, provider, msg):
+    provider.metadata["title"] = str(msg.payload)
+
+def on_play_start(client, provider, msg):
+    provider.playing = True
+
+def on_play_end(client, provider, msg):
+    provider.playing = False
+
+
+class ShairportDataProvider:
+    def __init__(self, settings):
+        self.__settings = settings
+        self.metadata = {
+            "artist": "",
+            "album": "",
+            "title": ""
+        }
+        self.playing = False
+        self.__initMQTT()
+
+    def __initMQTT(self):
+        self.__client = mqtt.Client()
+        self.__client.user_data_set(self)
+        self.__client.on_connect = on_connect
+        self.__client.on_message = on_message
+        # TODO Make the topics configurable
+        self.__client.message_callback_add("shairport-sync/idefix/album", on_album)
+        self.__client.message_callback_add("shairport-sync/idefix/artist", on_artist)
+        self.__client.message_callback_add("shairport-sync/idefix/title", on_title)
+        self.__client.message_callback_add("shairport-sync/idefix/play_start", on_play_start)
+        self.__client.message_callback_add("shairport-sync/idefix/play_resume", on_play_start)
+        self.__client.message_callback_add("shairport-sync/idefix/play_end", on_play_end)
+        self.__client.connect("localhost")
+        self.__client.loop_start()
+
+    def getPlayers(self):
+        return ["audio"] if self.playing else []
+
+    def getPlayingAudio(self):
+        return self.metadata
+
+    def getAudioPlayerPosition(self):
+        # Shairport doesn't seem to report progress
+        return 0
+
+
 class MusicScreen:
     def __init__(self, disp, settings):
         self.disp = disp
@@ -84,6 +146,7 @@ class MusicScreen:
         self.progress = gd.Progressbar(disp, [0,30], [128,4], border=False)
 
         self.dataProviders = [
+            ShairportDataProvider(settings),
             PlexDataProvider(settings)
         ]
 
