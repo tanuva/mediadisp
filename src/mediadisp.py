@@ -28,9 +28,10 @@ class MediaDisp:
     def __init__(self, serdisp):
         self.__serdisp = serdisp
         self.__wasDisplayOn = True
-        self.__screens = {}
-        self.__screens["music"] = MusicScreen(self.__serdisp, Settings)
-        self.__screens["idle"] = IdleScreen(self.__serdisp, Settings)
+        self.__screens = {
+            "music": MusicScreen(self.__serdisp, Settings),
+            "idle": IdleScreen(self.__serdisp, Settings)
+        }
 
     def __s(self, name):
         return self.__screens[name]
