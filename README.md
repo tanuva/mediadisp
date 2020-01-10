@@ -1,7 +1,7 @@
 mediadisp
 ========
 
-A piece of code that displays information from Plex Media Server (earlier: Kodi/XBMC) on an external display connected via serdisplib.
+A piece of code that displays information from [shairport-sync](https://github.com/mikebrady/shairport-sync) and/or Plex (earlier: Kodi/XBMC) on an external display connected via serdisplib.
 For setup details, copy `settings.default.py` and adapt. You have all the power of the snake. :)
 It shows music metadata while playing music and a clock in idle. Apart from that the backlight is turned off while playing movies - we don't want to disturb.
 
@@ -12,7 +12,7 @@ Dependencies
 
 Debian packages: `sudo aptitude install python-dev libjpeg-dev`
 
-Packages from pip: `sudo pip install freetype-py pillow requests`
+Packages from pip: `sudo pip install freetype-py pillow requests paho-mqtt`
 
 Customization
 =============
