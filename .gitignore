@@ -2,3 +2,9 @@
 *.pyo
 ._*
 src/settings.py
+
+# virtualenv stuff
+bin/*
+lib/*
+share/*
+pyvenv.cfg
