@@ -12,7 +12,7 @@ Dependencies
 
 Debian packages: `sudo aptitude install python-dev libjpeg-dev`
 
-Packages from pip: `sudo pip install freetype-py pillow requests paho-mqtt`
+Packages from pip: `sudo pip install freetype-py pillow requests paho-mqtt plexapi`
 
 Customization
 =============
