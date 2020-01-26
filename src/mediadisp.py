@@ -91,8 +91,21 @@ def parseArgs():
 
 if __name__ == "__main__":
     args = parseArgs()
+    starttime = datetime.now()
+    frames = 0
+
     with Serdisp(Settings.dispDevice, Settings.dispModel) as serdisp:
         disp = MediaDisp(serdisp, args)
         while True:
             disp.run()
-            sleep(10)
+
+            if args.tlimit:
+                frames += 1
+                if (datetime.now() - starttime).seconds >= args.tlimit:
+                    break
+            else:
+                sleep(5)
+
+        if args.tlimit:
+            diff = datetime.now() - starttime
+            print("Frames: %i FPS: %s" % (frames, frames / diff.seconds))
