@@ -79,13 +79,13 @@ def on_message(client, provider, msg):
     print("Unhandled topic: %s" % (msg.topic))
 
 def on_album(client, provider, msg):
-    provider.metadata["album"] = str(msg.payload)
+    provider.metadata["album"] = msg.payload.decode("utf-8")
 
 def on_artist(client, provider, msg):
-    provider.metadata["artist"] = str(msg.payload)
+    provider.metadata["artist"] = msg.payload.decode("utf-8")
 
 def on_title(client, provider, msg):
-    provider.metadata["title"] = str(msg.payload)
+    provider.metadata["title"] = msg.payload.decode("utf-8")
 
 def on_play_start(client, provider, msg):
     provider.playing = True
