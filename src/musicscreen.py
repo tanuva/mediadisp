@@ -132,7 +132,7 @@ class ShairportDataProvider:
 
 
 class MusicScreen:
-    def __init__(self, disp, settings):
+    def __init__(self, disp, settings, args):
         self.disp = disp
         # draw layout only once
         self.bg = gd.Pixmap(disp, "layout-music.png", [0, 0])

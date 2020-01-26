@@ -25,12 +25,13 @@ from musicscreen import MusicScreen
 from idlescreen import IdleScreen
 
 class MediaDisp:
-    def __init__(self, serdisp):
+    def __init__(self, serdisp, args):
         self.__serdisp = serdisp
+        self.__args = args
         self.__wasDisplayOn = True
         self.__screens = {
-            "music": MusicScreen(self.__serdisp, Settings),
-            "idle": IdleScreen(self.__serdisp, Settings)
+            "music": MusicScreen(self.__serdisp, Settings, args),
+            "idle": IdleScreen(self.__serdisp, Settings, args)
         }
 
     def __s(self, name):
@@ -77,9 +78,21 @@ class MediaDisp:
 
         return isOn
 
+def parseArgs():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--no-network", "-n", dest="network", action="store_const",
+        const=False, default=True,
+        help='Disable network requests')
+    parser.add_argument("--tlimit", "-t", dest="tlimit", default=None, type=int,
+        help='Quit after the specified time limit (seconds). Also disables the frame limiter.')
+
+    return parser.parse_args()
+
 if __name__ == "__main__":
+    args = parseArgs()
     with Serdisp(Settings.dispDevice, Settings.dispModel) as serdisp:
-        disp = MediaDisp(serdisp)
+        disp = MediaDisp(serdisp, args)
         while True:
             disp.run()
             sleep(10)

@@ -30,9 +30,10 @@ class ICalPoller:
         return countdownEvent
 
 class IdleScreen:
-    def __init__(self, disp, settings):
+    def __init__(self, disp, settings, args):
         self.disp = disp
         self.settings = settings
+        self.args = args
         self.poller = ICalPoller(self.settings.countdown["ical"])
         self.bg = gd.Pixmap(disp, "layout-idle.png", [0, 0])
         self.time = gd.Text(disp, [0,6], "DroidSans.ttf", 50, "00:00", halign = "center", valign = "top")
@@ -49,12 +50,15 @@ class IdleScreen:
         self.time.setText("{:%H:%M}".format(curTime))
         self.time.draw()
         if self.settings.countdown["enabled"]:
-            try:
-                count = self.daysLeft()
-                template = "{0} Tag" if abs(count) == 1 else "{0} Tage"
-                self.days.setText(template.format(count))
-            except requests.exceptions.RequestException as e:
-                print(e.message)
-                # Display something remotely useful to the user
-                self.days.setText(type(e).__name__)
+            if self.args.network:
+                try:
+                    count = self.daysLeft()
+                    template = "{0} Tag" if abs(count) == 1 else "{0} Tage"
+                    self.days.setText(template.format(count))
+                except requests.exceptions.RequestException as e:
+                    print(e)
+                    # Display something remotely useful to the user
+                    self.days.setText(type(e).__name__)
+            else:
+                self.days.setText("Network Disabled")
             self.days.draw()
