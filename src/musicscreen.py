@@ -151,7 +151,12 @@ class MusicScreen:
             PlexDataProvider(settings)
         ]
 
+        self.devMode = False
+
     def hasContent(self):
+        if self.devMode:
+            return True
+
         for provider in self.dataProviders:
             return len(provider.getPlayers()) > 0
 
