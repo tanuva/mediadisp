@@ -76,7 +76,8 @@ def on_connect(client, provider, flags, rc):
     client.subscribe("shairport-sync/idefix/#")
 
 def on_message(client, provider, msg):
-    print("Unhandled topic: %s" % (msg.topic))
+    #print("Unhandled topic: %s" % (msg.topic))
+    pass
 
 def on_album(client, provider, msg):
     provider.metadata["album"] = msg.payload.decode("utf-8")
