@@ -1,0 +1,6 @@
+freetype-py
+pillow
+requests
+paho-mqtt
+plexapi
+icalendar
