@@ -10,9 +10,22 @@ It shows music metadata while playing music and a clock in idle. Apart from that
 Dependencies
 ============
 
-Debian packages: `sudo aptitude install python-dev libjpeg-dev`
+Debian packages: 
+```
+aptitude install python-dev libjpeg-dev
+```
 
-Packages from pip: `sudo pip install freetype-py pillow requests paho-mqtt plexapi`
+Packages from pip:
+```
+pip install -r requirements.txt`
+```
+
+Running
+=======
+
+```
+python src/mediadisp.py
+```
 
 Customization
 =============
