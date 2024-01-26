@@ -1,75 +1,7 @@
 from datetime import datetime
-from plexapi.myplex import MyPlexAccount
 import paho.mqtt.client as mqtt
 import traceback
 import widget as gd
-
-class PlexDataProvider:
-    def __init__(self, settings):
-        self.__settings = settings
-        try:
-            account = MyPlexAccount(settings.plex["user"], settings.plex["password"])
-            self.__plex = account.resource(settings.plex["servername"]).connect()
-        except:
-            print("Could not connect to Plex API")
-
-    def __getLocalMedium(self):
-        # sessions() seems to return plexapi.audio.Track instances when playing
-        # music. Maybe other classes for different media.
-        if not self.__plex:
-            raise "No Plex API connection"
-
-        for medium in self.__plex.sessions():
-            if len(medium.session) < 1:
-                continue
-            if medium.session[0].location == "lan":
-                return medium
-        return None
-
-    def getPlayers(self):
-        # medium.type element [movie, track, episode]
-        medium = None
-        try:
-            medium = self.__getLocalMedium()
-        except Exception as e:
-            print("getPlayers(): Exception occurred. Probably Plex server offline?")
-            traceback.format_exc()
-
-        if medium == None:
-            return []
-
-        if medium.type == "movie" or medium.type == "episode":
-            return ["video"]
-        elif medium.type == "track":
-            return ["audio"]
-        else:
-            print("Unexpected medium type: " + medium.type)
-            return []
-
-    def getPlayingAudio(self):
-        medium = self.__getLocalMedium()
-        if not medium:
-            return {
-                "artist": "",
-                "album": "",
-                "title": ""
-            }
-
-        return {
-            "artist": medium.artist().title,
-            "album": medium.parentTitle,
-            "title": medium.title
-        }
-
-    def getAudioPlayerPosition(self):
-        medium = self.__getLocalMedium()
-        if not medium:
-            return 0
-
-        duration = float(medium.duration)
-        current = float(medium.viewOffset)
-        return current / duration
-
 
 def on_connect(client, provider, flags, rc):
     print("Connected to MQTT broker")
@@ -145,7 +77,6 @@ class MusicScreen:
 
         self.dataProviders = [
             ShairportDataProvider(settings),
-            PlexDataProvider(settings)
         ]
 
         self.devMode = False
