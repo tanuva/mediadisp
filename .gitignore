@@ -5,4 +5,4 @@ src/settings.py
 
 # virtualenv stuff
 py3.11/*
-
+venv/*
